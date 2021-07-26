@@ -1,0 +1,70 @@
+
+type Query {
+
+    MpExtraFeeRule(
+         cart_id: String! @doc(description: "Cart ID")
+         area: String! @doc(description: "Area")
+         address_information: AddressInformationInput! @doc(description: "Address information")
+    ): RulesOutput @resolver(class: "Mageplaza\\ExtraFeeGraphQl\\Model\\Resolver\\Rules") @doc(description: "Get all extra fee available for customer")
+}
+
+type Mutation {
+
+    MpExtraFeeSelectOptions(
+         cart_id: String! @doc(description: "Cart ID")
+         area: String! @doc(description: "Area")
+         formData: String! @doc(description: "Serialize form data")
+    ): [TotalSegmentsOutput] @resolver(class: "Mageplaza\\ExtraFeeGraphQl\\Model\\Resolver\\SelectOptions") @doc(description: "Set options")
+}
+
+   input AddressInformationInput {
+        shipping_address: CartAddressInput!
+        billing_address: CartAddressInput!,
+        extension_attributes: MpAttributesInput
+    }
+
+    input MpAttributesInput {
+        mp_ef_payment_method: String
+    }
+
+    type RulesOutput {
+        rules:AreaOutput @doc(description: "Area output")
+        selected_options: String
+    }
+
+    type AreaOutput {
+        payment_method: [MpExtraFeeRules]
+        shipping_method: [MpExtraFeeRules]
+        cart_summary:[MpExtraFeeRules]
+    }
+
+    type MpExtraFeeRules {
+      rule_id: Int @doc(description: "Rule Id")
+      name: String @doc(description: "Name")
+      status: Int @doc(description: "Status")
+      store_ids: String @doc(description: "Store Ids")
+      customer_groups: String @doc(description: "Customer Groups")
+      priority: Int @doc(description: "Priority")
+      conditions_serialized: String @doc(description: "Conditions Serialized")
+      apply_type: Int @doc(description: "Apply Type")
+      fee_type: Int @doc(description: "Fee Type")
+      amount: Float @doc(description: "Amount")
+      area: Int @doc(description: "Area")
+      display_type: Int @doc(description: "Display Type")
+      is_required: Int @doc(description: "Is Required")
+      fee_tax: Int @doc(description: "Fee Tax")
+      sort_order: Int @doc(description: "Sort Order")
+      refundable: Int @doc(description: "Refundable")
+      stop_further_processing: Int @doc(description: "Stop Further Processing")
+      labels: String @doc(description: "Labels")
+      options: String @doc(description: "Options")
+      created_at: String @doc(description: "Created At")
+      updated_at: String @doc(description: "Updated At")
+    }
+
+    type TotalSegmentsOutput {
+        code: String
+        title: String
+        value: Float
+    }
+

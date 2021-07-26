@@ -1,1 +1,1 @@
-# magento-extra-fee-graphql
+# Magento 2 Extra Fee GraphQL
