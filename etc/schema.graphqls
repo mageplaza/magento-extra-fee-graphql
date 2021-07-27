@@ -1,14 +1,10 @@
 
-type Query {
-
+type Mutation {
     MpExtraFeeRule(
          cart_id: String! @doc(description: "Cart ID")
          area: String! @doc(description: "Area")
          address_information: AddressInformationInput! @doc(description: "Address information")
     ): RulesOutput @resolver(class: "Mageplaza\\ExtraFeeGraphQl\\Model\\Resolver\\Rules") @doc(description: "Get all extra fee available for customer")
-}
-
-type Mutation {
 
     MpExtraFeeSelectOptions(
          cart_id: String! @doc(description: "Cart ID")

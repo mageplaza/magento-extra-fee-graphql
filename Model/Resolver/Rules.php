@@ -24,7 +24,6 @@ declare(strict_types=1);
 namespace Mageplaza\ExtraFeeGraphQl\Model\Resolver;
 
 use Magento\Framework\GraphQl\Config\Element\Field;
-use Magento\Framework\GraphQl\Exception\GraphQlAuthorizationException;
 use Magento\Framework\GraphQl\Exception\GraphQlInputException;
 use Magento\Framework\GraphQl\Exception\GraphQlNoSuchEntityException;
 use Magento\Framework\GraphQl\Query\ResolverInterface;
@@ -86,12 +85,6 @@ class Rules implements ResolverInterface
     {
         if (!$this->helperData->isEnabled()) {
             throw new GraphQlNoSuchEntityException(__('Extra Fee is disabled.'));
-        }
-
-        if ($this->helperData->versionCompare('2.3.3')) {
-            if ($context->getExtensionAttributes()->getIsCustomer() === false) {
-                throw new GraphQlAuthorizationException(__('The current customer isn\'t authorized.'));
-            }
         }
 
         try {
