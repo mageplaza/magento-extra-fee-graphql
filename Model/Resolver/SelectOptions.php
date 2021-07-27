@@ -86,7 +86,7 @@ class SelectOptions implements ResolverInterface
                 $quote = $this->getCartForUser->execute($args['cart_id'], $context->getUserId());
             }
 
-            $totals = $this->ruleManagement->collectTotal($quote->getId(), $args['area'], $args['formData']);
+            $totals = $this->ruleManagement->collectTotal($quote->getId(), $args['formData'], $args['area']);
 
             return $totals->getTotalSegments();
         } catch (\Exception $exception) {
