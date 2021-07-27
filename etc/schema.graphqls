@@ -1,6 +1,6 @@
 
 type Mutation {
-    MpExtraFeeRule(
+    MpExtraFeeRules(
          cart_id: String! @doc(description: "Cart ID")
          area: String! @doc(description: "Area")
          address_information: AddressInformationInput! @doc(description: "Address information")
