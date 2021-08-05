@@ -13,6 +13,10 @@ type Mutation {
     ): [TotalSegmentsOutput] @resolver(class: "Mageplaza\\ExtraFeeGraphQl\\Model\\Resolver\\SelectOptions") @doc(description: "Set options")
 }
 
+type CartPrices {
+    mp_extra_fee_segments: [TotalSegmentsOutput] @doc(description:"Extra Fee Segments") @resolver(class: "\\Mageplaza\\ExtraFeeGraphQl\\Model\\Resolver\\Segments")
+}
+
    input AddressInformationInput {
         shipping_address: CartAddressInput!
         billing_address: CartAddressInput!,
@@ -61,6 +65,7 @@ type Mutation {
     type TotalSegmentsOutput {
         code: String
         title: String
-        value: Float
+        value: Float,
+        currency: CurrencyEnum
     }
 
